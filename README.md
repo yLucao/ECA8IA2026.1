@@ -1,18 +1,21 @@
-# Projeto: Agente de IA CardioPredict 4.0
-
+# Projeto: Agente ThermoGrid 4.0.
 ### 1. Identificação do Grupo
 * **Instituição:** Fundação Salvador Arena
 * **Curso:** Engenharia de Controle e Automação
-* **Grupo:** Grupo X
+* **Grupo:** Grupo F
 * **Integrantes:**
-    * Diego Marques de Carvalho - RA: 21002603
+* Lucas Bandeira Barbosa - RA: 062220009
+* Enzo dos Passos Santos – RA: 062220015
+* João Victor Ugolini Coelho – RA: 062220035
+* Vinicius Premero Rocha de Souza – RA: 062230044
+
 
 ---
 
 ### 2. Área Problema Selecionada
 Selecione a trilha tecnológica do projeto (marque com um [x]):
-* [X] **Saúde 4.0:** Robótica Assistiva (Controladores Inteligentes/Fuzzy)
-* [ ] **Smart Grid:** Eficiência Energética e Descarbonização
+* [ ] **Saúde 4.0:** Robótica Assistiva (Controladores Inteligentes/Fuzzy)
+* [X] **Smart Grid:** Eficiência Energética e Descarbonização
 * [ ] **Agtech:** Automação de Precisão e Visão Computacional
 * [ ] **Logística Autônoma:** Coordenação de AGVs e Otimização de Rotas
 
@@ -21,45 +24,44 @@ Selecione a trilha tecnológica do projeto (marque com um [x]):
 ### 3. Diagnóstico e Definição do Agente
 Nesta seção, descrevemos o cenário de atuação e a modelagem do agente inteligente.
 
-* **Contexto:** O projeto aplica-se ao setor de saúde digital e monitoramento intensivo, onde a velocidade de diagnóstico é o fator determinante entre a vida e a morte em eventos cardiovasculares.
-* **Problema:** A dificuldade de identificar padrões sutis em sinais vitais que precedem um infarto, resultando em diagnósticos tardios em ambientes de triagem ou monitoramento remoto.
-* **Impacto:** A implementação deste agente visa reduzir o tempo de resposta médica e aumentar a precisão na identificação de pacientes de alto risco, reduzindo a taxa de mortalidade hospitalar.
+* **Contexto:** O projeto integra-se ao ecossistema de Smart Grid Industrial, focado no monitoramento preditivo de ativos elétricos. Atualmente, a análise de eficiência térmica é manual, lenta e subjetiva, dificultando a integração de dados em tempo real para o gerenciamento de carga.
+* **Problema:** Falhas térmicas em componentes elétricos geram resistência excessiva, causando desperdício de energia (perdas por calor) e picos de consumo inesperados. A análise manual não permite uma resposta rápida para a otimização do consumo em plantas complexas.
+* **Impacto:** O agente automatiza a varredura termográfica, permitindo a identificação imediata de perdas energéticas. Isso reduz a pegada de carbono, otimiza o gerenciamento de carga em tempo real e evita paradas críticas, alinhando a manutenção à eficiência energética do Smart Grid.
 
 #### Modelagem PEAS (Agente Inteligente)
 | Componente | Descrição |
 | :--- | :--- |
-| **Performance (P)** | Minimizar falsos negativos; Alcançar acurácia superior a 85% na classificação de risco. |
-| **Ambiente (E)** | Sistema de monitoramento de UTI ou dispositivo vestível (wearable) de telemedicina. |
-| **Atuadores (A)** | Painel de alerta para a equipe de enfermagem; Disparo de notificação de emergência. |
-| **Sensores (S)** | Leitura de pressão arterial, frequência cardíaca, idade, nível de colesterol e ECG. |
+| **Performance (P)** | Maximizar a precisão na detecção de anomalias; Minimizar perdas energéticas por dissipação de calor; Reduzir o tempo de resposta em diagnósticos; Otimizar o balanceamento de carga baseado na saúde dos ativos.|
+| **Ambiente (E)** | Painéis elétricos industriais, sistemas de distribuição de energia em Smart Grids, plantas industriais complexas.|
+| **Atuadores (A)** | Geração de laudos automatizados, alertas de eficiência energética, sinalização para algoritmos de gerenciamento de carga sobre a necessidade de redistribuição de energia. |
+| **Sensores (S)** | Câmera termográfica (via interface YOLOv8), sensores de consumo (Dataset Steel Industry), logs de temperatura por componente. |
 
 ---
 
 ### 4. Arquitetura de Dados e IA
 Definição das fontes de dados e da inteligência por trás da solução.
 
-* **Origem dos Dados:** [Heart Attack Dataset - Kaggle](https://www.kaggle.com/datasets/fatemehmohammadinia/heart-attack-dataset-tarik-a-rashid).
-* **Lógica de IA:** Redes Neurais Artificiais (Multilayer Perceptron).
-* **Justificativa:** Redes neurais são altamente eficientes no processamento de grandes volumes de dados tabulares médicos, permitindo encontrar correlações não lineares entre os sintomas e o desfecho clínico do paciente.
-
+* **Origem dos Dados:** Steel Industry Energy Consumption Dataset e imagens termográficas rotuladas via Roboflow.
+* **Lógica de IA:** Visão Computacional (YOLOv8): Para identificação de componentes e detecção de pontos quentes em imagens térmicas. Machine Learning (Redes Neurais/Scikit-learn): Para análise de padrões de consumo e predição de carga energética.
+* **Justificativa:** A integração da Visão Computacional com algoritmos de busca permite transformar a imagem térmica em um dado acionável. Isso automatiza processos anteriormente subjetivos, otimiza o consumo de energia em plantas industriais complexas e reduz diretamente a pegada de carbono, conforme os requisitos de eficiência do Smart Grid.
 ---
 
 ### 5. Plano de Tratamento de Dados (ETL)
 O fluxo de processamento dos dados segue estas etapas:
-1. **Extração:** Leitura automatizada do arquivo `heart_attack_dataset.csv` via biblioteca Pandas.
-2. **Transformação:** Normalização de dados numéricos (Min-Max Scaling), tratamento de valores ausentes (Imputação pela média) e codificação de variáveis binárias.
-3. **Carga:** Armazenamento dos tensores prontos para o modelo na pasta `/data/processed`.
-
+1. **Extração:** Leitura do dataset de consumo e ingestão de imagens térmicas brutas das pastas locais ou Roboflow.
+2. **Transformação:** Limpeza de ruídos e normalização dos dados de consumo; redimensionamento e rotulação de imagens para o formato YOLO. Cálculo de variáveis de "Eficiência de Perda Térmica" (relacionando temperatura detectada vs. carga consumida).
+3. **Carga:** Armazenamento dos modelos (.pt para visão e .pkl para heurísticas) na pasta /models.
 ---
 
 ### 6. Estrutura do Repositório
 Organização simplificada para o Milestone 1:
-* `/data`: Arquivos de dados originais (raw) e tratados (processed).
-* `/notebooks`: Experimentos iniciais de análise exploratória e correlação.
-* `/scripts`: Códigos Python (.py) contendo a classe do Agente e scripts de ETL.
-* `requirements.txt`: Lista de bibliotecas (Numpy, Pandas, Scikit-learn, TensorFlow).
-* `README.md`: Documentação técnica do projeto.
-
+* `/data`: Dados brutos e processados do setor metalúrgico.
+* `/images`: Armazena as imagens térmicas originais e as rotuladas pelo Roboflow.
+* `/models`: Pesos do YOLOv8 e scripts de lógica heurística.
+* `/notebooks`: Análise exploratória e prototipagem dos modelos de visão e energia.
+* `/scripts`: Scripts Python para ETL, treinamento e detecção de anomalias em tempo real.
+* `requirements.txt`: Bibliotecas (YOLOv8, OpenCV, Pandas, Scikit-learn, PyTorch/TensorFlow).
+* `README.md`: Documentação técnica do Agente ThermoGrid 4.0.
 ---
 
 ### 7. Instruções para Execução
@@ -68,3 +70,8 @@ Para reproduzir o ambiente e testar o diagnóstico:
 2. Instale as dependências:
    ```bash
    pip install -r requirements.txt
+   python scripts/etl.py
+   python scripts/train_model.py
+   python scripts/detect_thermal_anomaly.py
+
+   # Bibliotecas de Visão Computacional
