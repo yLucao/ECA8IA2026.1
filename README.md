@@ -28,7 +28,7 @@ smartgrid-fuzzy/
 ├── .gitignore
 │
 ├── notebook/
-│   └── SmartGrid.ipynb   # seu arquivo (renomeado)
+│   └── SmartGrid.ipynb   
 │
 └── src/
     ├── _init_.py
@@ -36,13 +36,13 @@ smartgrid-fuzzy/
     ├── fallback.py
     └── ai_interpreter.py
 ---
-# 🔥 ThermoGrid 4.0
+# ThermoGrid 4.0
 
 Agente inteligente para análise térmica em sistemas elétricos industriais utilizando Lógica Fuzzy + IA Generativa.
 
 ---
 
-## 🚀 Tecnologias
+## Tecnologias
 
 - Python
 - YOLOv8 (Visão Computacional)
@@ -51,7 +51,7 @@ Agente inteligente para análise térmica em sistemas elétricos industriais uti
 
 ---
 
-## 🧠 Arquitetura
+## Arquitetura
 
 1. Captura de dados (imagem + consumo)
 2. Processamento (YOLO + ML)
@@ -59,7 +59,7 @@ Agente inteligente para análise térmica em sistemas elétricos industriais uti
 4. Interpretação com IA (Gemini)
 
 ---
-## 🔍 Exemplos de Execução
+## Exemplos de Execução
 
 Veja abaixo cenários reais simulados do sistema:
 
@@ -77,7 +77,7 @@ Prioridade calculada: 91.3
 [INTERPRETAÇÃO - GEMINI]
 "Há um desbalanceamento severo entre demanda e oferta, caracterizando uma situação crítica na rede elétrica. Existe alto risco de falhas ou apagões. Medidas imediatas devem ser tomadas, incluindo cortes seletivos ou ativação de fontes alternativas de energia."
 
-## 🌫️ Sistema Fuzzy
+## Sistema Fuzzy
 
 Entradas:
 - Temperatura (°C)
@@ -90,7 +90,7 @@ Saída:
 [CLASSIFICAÇÃO] CRÍTICO
 ---
 
-## ⚙️ Como rodar
+## Como rodar
 
 ```bash
 pip install -r requirements.txt
