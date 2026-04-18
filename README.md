@@ -68,8 +68,8 @@ Demanda: 100
 Oferta: 10
 
 [PROCESSAMENTO]
-✔ Fuzzy disponível: True
-✔ Método utilizado: Fuzzy Logic
+Fuzzy disponível: True
+Método utilizado: Fuzzy Logic
 
 [OUTPUT NUMÉRICO]
 Prioridade calculada: 91.3
