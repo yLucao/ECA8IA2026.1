@@ -20,18 +20,21 @@ Selecione a trilha tecnológica do projeto (marque com um [x]):
 * [ ] **Logística Autônoma:** Coordenação de AGVs e Otimização de Rotas
       
 ---
-
-thermogrid-4.0/
+smartgrid-fuzzy/
 │
-├── thermogrid_agent.py
+├── README.md
 ├── requirements.txt
 ├── .env.example
-├── README.md
+├── .gitignore
 │
-├── /data
-├── /models
-├── /scripts
-└── /notebooks
+├── notebook/
+│   └── SmartGrid.ipynb   # seu arquivo (renomeado)
+│
+└── src/
+    ├── _init_.py
+    ├── fuzzy_logic.py
+    ├── fallback.py
+    └── ai_interpreter.py
 ---
 # 🔥 ThermoGrid 4.0
 
