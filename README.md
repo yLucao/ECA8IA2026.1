@@ -90,8 +90,20 @@ Saída:
 [CLASSIFICAÇÃO] CRÍTICO
 ---
 
+Monitoramento Preditivo
+Abordagem Escolhida: Rede Neural Artificial (RNA)
+Optamos pelo uso de Redes Neurais Artificiais (Multi-Layer Perceptron) em vez de Algoritmos Evolutivos para esta etapa do projeto. O motivo principal é que a RNA apresenta maior precisão na regressão de variáveis contínuas (temperatura) com base em múltiplas entradas (carga e histórico). Enquanto algoritmos evolutivos são excelentes para otimização, a RNA permite que o agente "aprenda" o comportamento térmico do sistema e antecipe falhas antes que elas ocorram na Lógica Fuzzy.
+
+Desempenho do Modelo
+O gráfico abaixo demonstra a convergência do modelo durante o treinamento. A redução constante da função de perda (Loss) indica que o agente aprendeu com sucesso a relação entre a carga aplicada e o aquecimento resultante.
+E através disso escolhemos a abordagem em RNA, a opção de uso de redes neurais em nosso contexto tornou o TermoGrid em um sistema preditivo, dessa forma, o sistema não diz somente que um componente está superaquecendo, mas prevê tendência a superaquecer.
+<img width="859" height="473" alt="image" src="https://github.com/user-attachments/assets/3ef7a8c9-d4e7-438f-a3a9-57e5eb54171d" />
+
 ## Como rodar
 
 ```bash
 pip install -r requirements.txt
 python thermogrid_agent.py
+pip install scikit-fuzzy
+pip install google-genai
+pip install matplotlib scikit-learn
