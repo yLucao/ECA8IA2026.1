@@ -80,7 +80,7 @@ smartgrid-fuzzy/
 ├── .gitignore
 │
 ├── notebook/
-│   └── ComportamentoTermico_Componentes.ipynb   
+│   └── SmartGrid.ipynb   
 │
 └── src/
     ├── __init__.py
