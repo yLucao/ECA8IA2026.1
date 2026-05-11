@@ -1,25 +1,77 @@
-# Projeto: Agente ThermoGrid 4.0.
+# Projeto: Agente ThermoGrid 4.0
+
+![Google Colab](https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252)
+![Gemini API](https://img.shields.io/badge/Gemini%20API-8E75B2?style=for-the-badge&logo=googlebard&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
+
+
 ### 1. Identificação do Grupo
-* **Instituição:** Fundação Salvador Arena
+* **Instituição:** Faculdade Engenheiro Salvador Arena (FESA)
 * **Curso:** Engenharia de Controle e Automação
 * **Grupo:** Grupo F
 * **Integrantes:**
-* Lucas Bandeira Barbosa - RA: 062220009
-* Enzo dos Passos Santos – RA: 062220015
-* João Victor Ugolini Coelho – RA: 062220035
-* Vinicius Premero Rocha de Souza – RA: 062230044
-
+  * Lucas Bandeira Barbosa - RA: 062220009
+  * Enzo dos Passos Santos – RA: 062220015
+  * João Victor Ugolini Coelho – RA: 062220035
+  * Vinicius Premero Rocha de Souza – RA: 062230044
 
 ---
 
-### 2. Área Problema Selecionada
-Selecione a trilha tecnológica do projeto (marque com um [x]):
-* [ ] **Saúde 4.0:** Robótica Assistiva (Controladores Inteligentes/Fuzzy)
-* [X] **Smart Grid:** Eficiência Energética e Descarbonização
-* [ ] **Agtech:** Automação de Precisão e Visão Computacional
-* [ ] **Logística Autônoma:** Coordenação de AGVs e Otimização de Rotas
-      
+### 2. Diagnóstico e Área Problema
+* **Área Selecionada:** `[X]` **Smart Grid:** Eficiência Energética e Descarbonização
+* **Contexto:** O sistema é focado na monitoração e visualização do comportamento térmico de componentes eletrônicos em tempo real. Utiliza visão computacional e telemetria para identificar pontos de calor (hotspots) em placas e módulos de potência.
+* **Problema:** A dificuldade de correlacionar visualmente o calor gerado por componentes eletrônicos com sua carga de trabalho atual, o que muitas vezes leva a falhas catastróficas por fadiga térmica que não são detectadas por sensores de temperatura ambiente comuns.
+* **Impacto:** Visualização preditiva do desgaste de componentes, permitindo identificar falhas iminentes em semicondutores, capacitores e trilhas antes que ocorra o colapso do sistema, otimizando o ciclo de vida do hardware.
+
 ---
+
+### 3. Arquitetura Lógica e Aprendizado
+O **Agente ThermoGrid 4.0** utiliza uma arquitetura híbrida para monitoramento eletrônico:
+
+1.  **Módulo Preditivo (Etapa 2):** Uma **RNA (MLPRegressor)** analisa o histórico de dissipação térmica do componente em relação à corrente consumida, prevendo quando a temperatura ultrapassará o limite de segurança operacional (Tjunction).
+2.  **Módulo de Controle (Etapa 3):** Um sistema de **Lógica Fuzzy** classifica o estado de saúde do componente (Saudável, Alerta, Crítico) cruzando a temperatura atual com a taxa de variação térmica ($\Delta T$).
+3.  **Camada Interpretativa:** A **API do Gemini** traduz os mapas térmicos e dados de sensores em diagnósticos diretos (ex: "Possível fuga de corrente no componente X" ou "Sugestão: Reduzir frequência de chaveamento").
+
+---
+
+### 4. Modelagem PEAS
+| Componente | Descrição |
+| :--- | :--- |
+| **Performance (P)** | Precisão na localização de hotspots, tempo de resposta para alertas de sobreaquecimento e acurácia da tendência térmica futura. |
+| **Ambiente (E)** | Bancadas de teste, painéis industriais, servidores e ambientes de prototipagem eletrônica. |
+| **Atuadores (A)** | Visualização via Dashboard (mapa de calor), alertas sonoros/visuais e recomendações técnicas via IA. |
+| **Sensores (S)** | Câmeras térmicas infravermelhas, sensores de temperatura de contato (termistores), shunts de corrente e sensores de tensão. |
+
+---
+
+### 5. Monitoramento Preditivo: Abordagem RNA
+A escolha por **Redes Neurais** deve-se à natureza não linear da dissipação térmica em eletrônicos. O comportamento térmico de um transistor, por exemplo, não é constante sob diferentes regimes de carga. A RNA aprende essas curvas de dissipação específicas para cada tipo de componente monitorado.
+
+#### Desempenho do Modelo
+A convergência do modelo garante que o erro na predição de temperatura seja mínimo, permitindo uma visualização "no futuro" do comportamento do componente:
+<img width="859" height="473" alt="image" src="https://github.com/user-attachments/assets/3ef7a8c9-d4e7-438f-a3a9-57e5eb54171d" />
+
+### 6. Exemplo de Execução
+[INPUT]
+Componente: Microcontrolador
+Corrente medida: 450mA
+Temperatura Atual: 45°C
+
+[PROCESSAMENTO]
+Fuzzy disponível: True
+Método utilizado: Fuzzy Logic + RNA
+
+[OUTPUT NUMÉRICO]
+Índice de Risco Térmico: 0.15
+
+[INTERPRETAÇÃO - GEMINI]
+"O comportamento térmico do processador está estável. A temperatura de 45°C é considerada ideal para a carga de trabalho atual. Não foram detectados hotspots anômalos no entorno do componente."
+
+---
+
+### 7. Estrutura do Repositório
+```text
 smartgrid-fuzzy/
 │
 ├── README.md
@@ -28,82 +80,10 @@ smartgrid-fuzzy/
 ├── .gitignore
 │
 ├── notebook/
-│   └── SmartGrid.ipynb   
+│   └── ComportamentoTermico_Componentes.ipynb   
 │
 └── src/
-    ├── _init_.py
-    ├── fuzzy_logic.py
-    ├── fallback.py
-    └── ai_interpreter.py
----
-# ThermoGrid 4.0
-
-Agente inteligente para análise térmica em sistemas elétricos industriais utilizando Lógica Fuzzy + IA Generativa.
-
----
-
-## Tecnologias
-
-- Python
-- YOLOv8 (Visão Computacional)
-- Lógica Fuzzy (scikit-fuzzy)
-- Gemini API (IA Generativa)
-
----
-
-## Arquitetura
-
-1. Captura de dados (imagem + consumo)
-2. Processamento (YOLO + ML)
-3. Inferência fuzzy (risco térmico)
-4. Interpretação com IA (Gemini)
-
----
-## Exemplos de Execução
-
-Veja abaixo cenários reais simulados do sistema:
-
-[INPUT]
-Demanda: 100
-Oferta: 10
-
-[PROCESSAMENTO]
-Fuzzy disponível: True
-Método utilizado: Fuzzy Logic
-
-[OUTPUT NUMÉRICO]
-Prioridade calculada: 91.3
-
-[INTERPRETAÇÃO - GEMINI]
-"Há um desbalanceamento severo entre demanda e oferta, caracterizando uma situação crítica na rede elétrica. Existe alto risco de falhas ou apagões. Medidas imediatas devem ser tomadas, incluindo cortes seletivos ou ativação de fontes alternativas de energia."
-
-## Sistema Fuzzy
-
-Entradas:
-- Temperatura (°C)
-- Carga elétrica (kW)
-
-Saída:
-[INFO] Temperatura: 85°C
-[INFO] Carga: 70 kW
-[INFO] Risco: 0.87
-[CLASSIFICAÇÃO] CRÍTICO
----
-
-Monitoramento Preditivo
-Abordagem Escolhida: Rede Neural Artificial (RNA)
-Optamos pelo uso de Redes Neurais Artificiais (Multi-Layer Perceptron) em vez de Algoritmos Evolutivos para esta etapa do projeto. O motivo principal é que a RNA apresenta maior precisão na regressão de variáveis contínuas (temperatura) com base em múltiplas entradas (carga e histórico). Enquanto algoritmos evolutivos são excelentes para otimização, a RNA permite que o agente "aprenda" o comportamento térmico do sistema e antecipe falhas antes que elas ocorram na Lógica Fuzzy.
-
-Desempenho do Modelo
-O gráfico abaixo demonstra a convergência do modelo durante o treinamento. A redução constante da função de perda (Loss) indica que o agente aprendeu com sucesso a relação entre a carga aplicada e o aquecimento resultante.
-E através disso escolhemos a abordagem em RNA, a opção de uso de redes neurais em nosso contexto tornou o TermoGrid em um sistema preditivo, dessa forma, o sistema não diz somente que um componente está superaquecendo, mas prevê tendência a superaquecer.
-<img width="859" height="473" alt="image" src="https://github.com/user-attachments/assets/3ef7a8c9-d4e7-438f-a3a9-57e5eb54171d" />
-
-## Como rodar
-
-```bash
-pip install -r requirements.txt
-python thermogrid_agent.py
-pip install scikit-fuzzy
-pip install google-genai
-pip install matplotlib scikit-learn
+    ├── __init__.py
+    ├── fuzzy_logic.py     # Classificação de risco por componente
+    ├── ai_interpreter.py  # Diagnóstico humanizado do hardware
+    └── model_rna.py       # Predição de tendência de aquecimento
