@@ -84,6 +84,8 @@ Método utilizado: Fuzzy Logic + RNA
 [INTERPRETAÇÃO - GEMINI]
 "O comportamento térmico do processador está estável. A temperatura de 45°C é considerada ideal para a carga de trabalho atual. Não foram detectados hotspots anômalos no entorno do componente."
 
+<img width="381" height="139" alt="image" src="https://github.com/user-attachments/assets/341d9282-56b6-4aeb-b0aa-f6ebe1b460ee" />
+
 ---
 
 ### 7. Estrutura do Repositório
