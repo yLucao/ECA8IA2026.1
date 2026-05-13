@@ -5,6 +5,8 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
+### Link do Protótipo
+** [(https://colab.research.google.com/drive/16vj9sHwx58bIS6wqvS37Ouzm88_FmGoS?usp=sharing)]
 
 ### 1. Identificação do Grupo
 * **Instituição:** Faculdade Engenheiro Salvador Arena (FESA)
@@ -31,40 +33,54 @@ O **Agente ThermoGrid 4.0** utiliza uma arquitetura híbrida para monitoramento 
 
 1.  **Módulo Preditivo (Etapa 2):** Uma **RNA (MLPRegressor)** analisa o histórico de dissipação térmica do componente em relação à corrente consumida, prevendo quando a temperatura ultrapassará o limite de segurança operacional (Tjunction).
 2.  **Módulo de Controle (Etapa 3):** Um sistema de **Lógica Fuzzy** classifica o estado de saúde do componente (Saudável, Alerta, Crítico) cruzando a temperatura atual com a taxa de variação térmica ($\Delta T$).
-3.  **Camada Interpretativa:** A **API do Gemini** traduz os mapas térmicos e dados de sensores em diagnósticos diretos (ex: "Possível fuga de corrente no componente X" ou "Sugestão: Reduzir frequência de chaveamento").
+3.  **Camada Interpretativa:** A **API do Gemini** traduz os mapas térmicos e dados de sensores em diagnósticos rápidos (ex: Suspeita de mau contato em terminais ou degradação dielétrica interna, dado que a temperatura atual é elevada para uma carga de apenas 37%).
 
 ---
 
-### 4. Modelagem PEAS
+## 4. Modelagem PEAS — ThermoGrid 4.0
+
 | Componente | Descrição |
 | :--- | :--- |
-| **Performance (P)** | Precisão na localização de hotspots, tempo de resposta para alertas de sobreaquecimento e acurácia da tendência térmica futura. |
-| **Ambiente (E)** | Bancadas de teste, painéis industriais, servidores e ambientes de prototipagem eletrônica. |
-| **Atuadores (A)** | Visualização via Dashboard (mapa de calor), alertas sonoros/visuais e recomendações técnicas via IA. |
-| **Sensores (S)** | Câmeras térmicas infravermelhas, sensores de temperatura de contato (termistores), shunts de corrente e sensores de tensão. |
+| **Performance (P)** | Detectar riscos térmicos com alta precisão utilizando lógica fuzzy e rede neural preditiva (MLPRegressor), prever tendências de aquecimento futuro, minimizar falsos positivos, gerar diagnósticos inteligentes em tempo real e antecipar falhas elétricas em componentes críticos do QGBT. |
+| **Ambiente (E)** | Quadros Gerais de Baixa Tensão (QGBT), painéis elétricos industriais, centros de distribuição elétrica, sistemas de automação industrial, inversores de frequência, bancos de capacitores e ambientes de manutenção preditiva em instalações elétricas industriais. |
+| **Atuadores (A)** | Alertas visuais simulados (“lâmpada de aviso”), exibição de relatórios preditivos no terminal, geração automática de diagnósticos técnicos via IA Gemini, gráficos de desempenho da RNA (Loss Curve) e recomendações operacionais para manutenção preventiva. |
+| **Sensores (S)** | Sensores de temperatura térmica, sensores de carga elétrica (%), dados históricos de operação utilizados pela RNA, entradas monitoradas de temperatura e corrente elétrica, além de variáveis processadas pela lógica fuzzy para cálculo de risco térmico. |
 
 ---
-### 5. Justificativa da Abordagem
+## 5. Justificativa da Abordagem
 
-Para o desenvolvimento do núcleo de inteligência do **Agente ThermoGrid 4.0**, foi selecionada a abordagem baseada em **Redes Neurais Artificiais (RNA)** integrada com **Lógica Fuzzy**, formando uma arquitetura híbrida capaz de realizar monitoramento térmico preditivo em componentes eletrônicos.
+O **ThermoGrid 4.0** utiliza uma arquitetura híbrida baseada em **Redes Neurais Artificiais (RNA)**, **Lógica Fuzzy** e **IA Generativa** para realizar monitoramento térmico inteligente e preditivo em sistemas elétricos industriais.
 
-#### **Por que esta abordagem foi escolhida?**
+### Natureza do Problema
 
-* **Natureza do Problema:**  
-O monitoramento térmico de componentes eletrônicos envolve fenômenos altamente não lineares, nos quais pequenas variações de corrente, tensão ou carga computacional podem gerar aumentos significativos de temperatura. Além disso, muitos processos de degradação térmica não são perceptíveis por sensores convencionais de temperatura ambiente, exigindo uma solução capaz de identificar padrões complexos e tendências futuras de aquecimento.
+O aquecimento de componentes elétricos ocorre de forma não linear, podendo causar falhas graves mesmo com pequenas variações de carga elétrica. Por isso, o sistema precisa identificar padrões de aquecimento e prever riscos antes que ocorram danos.
 
-* **Capacidade de Generalização:**  
-A utilização da **RNA (MLPRegressor)** foi escolhida devido à sua capacidade de aprender com dados históricos de dissipação térmica e identificar correlações complexas entre corrente elétrica, temperatura e comportamento operacional do hardware. Dessa forma, o sistema consegue prever tendências de superaquecimento antes que ocorram falhas críticas em semicondutores, trilhas e módulos de potência.
+### Uso da Rede Neural (RNA)
 
-* **Interpretação Inteligente com Lógica Fuzzy:**  
-A abordagem fuzzy complementa a RNA ao transformar dados numéricos em classificações interpretáveis, como “Saudável”, “Alerta” e “Crítico”. Isso permite que o sistema tome decisões mais próximas da lógica humana, considerando simultaneamente a temperatura atual e a taxa de variação térmica do componente.
+A RNA foi implementada com o modelo `MLPRegressor`, responsável por aprender padrões térmicos a partir de dados históricos.
 
-* **Escalabilidade:**  
-A arquitetura desenvolvida permite a integração futura de novos sensores e variáveis de entrada, como vibração, consumo energético, frequência de chaveamento e umidade, sem necessidade de reconstrução completa do sistema. Isso torna o projeto adaptável para aplicações industriais maiores dentro do contexto de Smart Grids e manutenção preditiva.
+O sistema utiliza:
+- Temperatura atual;
+- Percentual de carga elétrica.
 
-* **Integração com IA Generativa:**  
-A utilização da API Gemini adiciona uma camada interpretativa ao sistema, permitindo transformar dados técnicos e mapas térmicos em diagnósticos compreensíveis e recomendações operacionais automáticas, facilitando a tomada de decisão por operadores e equipes de manutenção.
+Com isso, consegue prever a temperatura futura do componente e antecipar situações de superaquecimento.
 
+Principais vantagens:
+- Aprendizado automático;
+- Predição de falhas;
+- Melhor tomada de decisão preventiva.
+
+### Uso da Lógica Fuzzy
+
+A lógica fuzzy foi utilizada para interpretar os dados de forma semelhante ao raciocínio humano.
+
+O sistema classifica:
+- Temperatura: baixa, média ou alta;
+- Carga: baixa, média ou alta;
+- Risco: baixo, médio ou alto.
+
+A partir dessas regras, o sistema calcula o nível de risco térmico do equipamento.
+---
 ### 6. Evidências Visuais e Desempenho
 A convergência do modelo garante que o erro na predição de temperatura seja mínimo, permitindo uma visualização "no futuro" do comportamento do componente:
 <img width="859" height="473" alt="image" src="https://github.com/user-attachments/assets/3ef7a8c9-d4e7-438f-a3a9-57e5eb54171d" />
@@ -84,7 +100,8 @@ Método utilizado: Fuzzy Logic + RNA
 [INTERPRETAÇÃO - GEMINI]
 "O comportamento térmico do processador está estável. A temperatura de 45°C é considerada ideal para a carga de trabalho atual. Não foram detectados hotspots anômalos no entorno do componente."
 
-<img width="381" height="139" alt="image" src="https://github.com/user-attachments/assets/341d9282-56b6-4aeb-b0aa-f6ebe1b460ee" />
+<img width="418" height="191" alt="image" src="https://github.com/user-attachments/assets/13c6208f-c3ab-419f-9fa1-da5ac0b1c8d5" />
+
 
 ---
 
