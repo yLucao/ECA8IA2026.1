@@ -44,15 +44,31 @@ O **Agente ThermoGrid 4.0** utiliza uma arquitetura híbrida para monitoramento 
 | **Sensores (S)** | Câmeras térmicas infravermelhas, sensores de temperatura de contato (termistores), shunts de corrente e sensores de tensão. |
 
 ---
+### 5. Justificativa da Abordagem
 
-### 5. Monitoramento Preditivo: Abordagem RNA
-A escolha por **Redes Neurais** deve-se à natureza não linear da dissipação térmica em eletrônicos. O comportamento térmico de um transistor, por exemplo, não é constante sob diferentes regimes de carga. A RNA aprende essas curvas de dissipação específicas para cada tipo de componente monitorado.
+Para o desenvolvimento do núcleo de inteligência do **Agente ThermoGrid 4.0**, foi selecionada a abordagem baseada em **Redes Neurais Artificiais (RNA)** integrada com **Lógica Fuzzy**, formando uma arquitetura híbrida capaz de realizar monitoramento térmico preditivo em componentes eletrônicos.
 
-#### Desempenho do Modelo
+#### **Por que esta abordagem foi escolhida?**
+
+* **Natureza do Problema:**  
+O monitoramento térmico de componentes eletrônicos envolve fenômenos altamente não lineares, nos quais pequenas variações de corrente, tensão ou carga computacional podem gerar aumentos significativos de temperatura. Além disso, muitos processos de degradação térmica não são perceptíveis por sensores convencionais de temperatura ambiente, exigindo uma solução capaz de identificar padrões complexos e tendências futuras de aquecimento.
+
+* **Capacidade de Generalização:**  
+A utilização da **RNA (MLPRegressor)** foi escolhida devido à sua capacidade de aprender com dados históricos de dissipação térmica e identificar correlações complexas entre corrente elétrica, temperatura e comportamento operacional do hardware. Dessa forma, o sistema consegue prever tendências de superaquecimento antes que ocorram falhas críticas em semicondutores, trilhas e módulos de potência.
+
+* **Interpretação Inteligente com Lógica Fuzzy:**  
+A abordagem fuzzy complementa a RNA ao transformar dados numéricos em classificações interpretáveis, como “Saudável”, “Alerta” e “Crítico”. Isso permite que o sistema tome decisões mais próximas da lógica humana, considerando simultaneamente a temperatura atual e a taxa de variação térmica do componente.
+
+* **Escalabilidade:**  
+A arquitetura desenvolvida permite a integração futura de novos sensores e variáveis de entrada, como vibração, consumo energético, frequência de chaveamento e umidade, sem necessidade de reconstrução completa do sistema. Isso torna o projeto adaptável para aplicações industriais maiores dentro do contexto de Smart Grids e manutenção preditiva.
+
+* **Integração com IA Generativa:**  
+A utilização da API Gemini adiciona uma camada interpretativa ao sistema, permitindo transformar dados técnicos e mapas térmicos em diagnósticos compreensíveis e recomendações operacionais automáticas, facilitando a tomada de decisão por operadores e equipes de manutenção.
+
+### 6. Evidências Visuais e Desempenho
 A convergência do modelo garante que o erro na predição de temperatura seja mínimo, permitindo uma visualização "no futuro" do comportamento do componente:
 <img width="859" height="473" alt="image" src="https://github.com/user-attachments/assets/3ef7a8c9-d4e7-438f-a3a9-57e5eb54171d" />
 
-### 6. Exemplo de Execução
 [INPUT]
 Componente: Microcontrolador
 Corrente medida: 450mA
@@ -71,19 +87,82 @@ Método utilizado: Fuzzy Logic + RNA
 ---
 
 ### 7. Estrutura do Repositório
+
 ```text
 smartgrid-fuzzy/
 │
-├── README.md
-├── requirements.txt
-├── .env.example
-├── .gitignore
+├── README.md                  # Documentação principal do projeto
+├── requirements.txt           # Dependências do sistema
+├── .env.example               # Exemplo de configuração da API Gemini
+├── .gitignore                 # Arquivos ignorados no versionamento
 │
-├── notebook/
-│   └── SmartGrid.ipynb   
+├── assets/
+│   └── images/                # Gráficos, mapas térmicos, diagramas e logs
+│
+├── data/                      # Datasets e arquivos de entrada utilizados nos testes
+│
+├── notebooks/
+│   └── SmartGrid.ipynb        # Notebook principal executável no Google Colab
 │
 └── src/
     ├── __init__.py
-    ├── fuzzy_logic.py     # Classificação de risco por componente
-    ├── ai_interpreter.py  # Diagnóstico humanizado do hardware
-    └── model_rna.py       # Predição de tendência de aquecimento
+    ├── fuzzy_logic.py         # Sistema Fuzzy para classificação térmica
+    ├── ai_interpreter.py      # Interpretação inteligente via Gemini API
+    └── model_rna.py           # Predição térmica utilizando MLPRegressor
+```
+
+---
+
+### 8. Instruções para Execução
+
+1. Clone o repositório do projeto:
+   ```bash
+   git clone [URL_DO_REPOSITORIO]
+   ```
+
+2. Acesse a pasta do projeto:
+   ```bash
+   cd smartgrid-fuzzy
+   ```
+
+3. Abra o notebook:
+   ```text
+   /notebooks/SmartGrid.ipynb
+   ```
+
+4. Instale as dependências:
+   ```bash
+   !pip install scikit-fuzzy
+   !pip install google-genai
+   !pip install matplotlib scikit-learn
+   ```
+
+5. Configure a API Gemini:
+   ```python
+   genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+   ```
+
+---
+
+## 9. Apêndice de IA
+
+Relato sobre o suporte de ferramentas de Inteligência Artificial Generativa no desenvolvimento do projeto **Agente ThermoGrid 4.0**.
+
+### Ferramentas
+- ChatGPT (OpenAI)
+- Gemini API (Google AI)
+
+### Aplicação
+As ferramentas de IA generativa foram utilizadas como suporte técnico e acadêmico durante o desenvolvimento do projeto, auxiliando em:
+
+- Estruturação e organização do código em Python;
+- Apoio na construção da arquitetura do agente inteligente;
+- Revisão textual e padronização da documentação técnica;
+- Sugestões para modelagem da lógica Fuzzy e da RNA (MLPRegressor);
+- Organização da estrutura do repositório GitHub;
+- Geração e refinamento de descrições técnicas do sistema;
+- Apoio na interpretação dos resultados térmicos e métricas do modelo;
+- Sugestões de melhoria para o pipeline de monitoramento preditivo.
+
+---
+© 2026 - Agente ThermoGrid 4.0 - Faculdade Engenheiro Salvador Arena
