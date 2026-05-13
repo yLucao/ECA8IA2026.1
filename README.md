@@ -6,7 +6,7 @@
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
 ### Link do Protótipo
-** [(https://colab.research.google.com/drive/16vj9sHwx58bIS6wqvS37Ouzm88_FmGoS?usp=sharing)]
+[(https://colab.research.google.com/drive/16vj9sHwx58bIS6wqvS37Ouzm88_FmGoS?usp=sharing)]
 
 ### 1. Identificação do Grupo
 * **Instituição:** Faculdade Engenheiro Salvador Arena (FESA)
