@@ -22,18 +22,18 @@
 
 ### 2. Diagnóstico e Área Problema
 * **Área Selecionada:** `[X]` **Smart Grid:** Eficiência Energética e Descarbonização
-* **Contexto:** O sistema é focado na monitoração e visualização do comportamento térmico de componentes eletrônicos em tempo real. Utiliza visão computacional e telemetria para identificar pontos de calor (hotspots) em placas e módulos de potência.
-* **Problema:** A dificuldade de correlacionar visualmente o calor gerado por componentes eletrônicos com sua carga de trabalho atual, o que muitas vezes leva a falhas catastróficas por fadiga térmica que não são detectadas por sensores de temperatura ambiente comuns.
-* **Impacto:** Visualização preditiva do desgaste de componentes, permitindo identificar falhas iminentes em semicondutores, capacitores e trilhas antes que ocorra o colapso do sistema, otimizando o ciclo de vida do hardware.
+* **Contexto:** O sistema é focado na monitoração e visualização do comportamento térmico de componentes eletrônicos em tempo real. Utiliza visão computacional e telemetria para identificar pontos de calor (hotspots), principalmente em painéis de energia.
+* **Problema:** As falhas em painéis elétricos costumam evoluir de forma silenciosa e, muitas vezes, só são percebidas quando já impactam a operação. Esse cenário pode gerar sobreaquecimento, perda de eficiência, desgaste acelerado de componentes, paradas não programadas e aumento do risco à segurança. Além disso, a identificação da origem do problema nem sempre é rápida ou simples, especialmente em painéis energizados, onde o diagnóstico exige tempo, cuidado e alta exposição do operador. Na prática, isso torna a análise de anomalias mais crítica, mais lenta e mais suscetível a falhas de interpretação.
+* **Impacto:** O ThermoGrid foi desenvolvido para, utilizando análise térmica, tornar a manutenção de painéis elétricos mais rápida, padronizada e assertiva. De forma geral, a proposta do aplicativo é apoiar a identificação de anomalias de temperatura com mais agilidade, reduzindo a dificuldade de inspeção, a dependência de análises demoradas e a exposição do operador durante o processo. O monitoramento é feito em tempo real, por isso, qualquer distúrbio é rapidamente detectado. A integração com inteligência artificial permite a predição de condições de risco recomendando ao operador ações de contenção antes mesmo que o problema aconteça.
 
 ---
 
 ### 3. Arquitetura Lógica e Aprendizado
 O **Agente ThermoGrid 4.0** utiliza uma arquitetura híbrida para monitoramento eletrônico:
 
-1.  **Módulo Preditivo (Etapa 2):** Uma **RNA (MLPRegressor)** analisa o histórico de dissipação térmica do componente em relação à corrente consumida, prevendo quando a temperatura ultrapassará o limite de segurança operacional (Tjunction).
-2.  **Módulo de Controle (Etapa 3):** Um sistema de **Lógica Fuzzy** classifica o estado de saúde do componente (Saudável, Alerta, Crítico) cruzando a temperatura atual com a taxa de variação térmica ($\Delta T$).
-3.  **Camada Interpretativa:** A **API do Gemini** traduz os mapas térmicos e dados de sensores em diagnósticos rápidos (ex: Suspeita de mau contato em terminais ou degradação dielétrica interna, dado que a temperatura atual é elevada para uma carga de apenas 37%).
+1.  **Módulo Preditivo (RNA):** Uma **Rede Neural** analisa o histórico de dissipação térmica do componente em relação à corrente consumida, prevendo quando a temperatura ultrapassará o limite de segurança operacional (Tjunction).
+2.  **Módulo de Controle:** Um sistema de **Lógica Fuzzy** classifica o estado de saúde do componente (Saudável, Alerta, Crítico) cruzando a temperatura atual com a taxa de variação térmica ($\Delta T$).
+3.  **Camada Interpretativa:** A **API do Gemini** traduz os mapas térmicos e dados de sensores em diagnósticos rápidos e dá sugestões ao operador (ex: Suspeita de mau contato em terminais ou degradação dielétrica interna, dado que a temperatura atual é elevada para uma carga de apenas 37%).
 
 ---
 
@@ -41,10 +41,10 @@ O **Agente ThermoGrid 4.0** utiliza uma arquitetura híbrida para monitoramento 
 
 | Componente | Descrição |
 | :--- | :--- |
-| **Performance (P)** | Detectar riscos térmicos com alta precisão utilizando lógica fuzzy e rede neural preditiva (MLPRegressor), prever tendências de aquecimento futuro, minimizar falsos positivos, gerar diagnósticos inteligentes em tempo real e antecipar falhas elétricas em componentes críticos do QGBT. |
+| **Performance (P)** | Detectar riscos térmicos com alta precisão utilizando lógica fuzzy e rede neural preditiva (MLPRegressor), prever tendências de aquecimento futuro, minimizar falsos positivos, gerar diagnósticos inteligentes em tempo real e antecipar falhas elétricas em componentes críticos. |
 | **Ambiente (E)** | Quadros Gerais de Baixa Tensão (QGBT), painéis elétricos industriais, centros de distribuição elétrica, sistemas de automação industrial, inversores de frequência, bancos de capacitores e ambientes de manutenção preditiva em instalações elétricas industriais. |
-| **Atuadores (A)** | Alertas visuais simulados (“lâmpada de aviso”), exibição de relatórios preditivos no terminal, geração automática de diagnósticos técnicos via IA Gemini, gráficos de desempenho da RNA (Loss Curve) e recomendações operacionais para manutenção preventiva. |
-| **Sensores (S)** | Sensores de temperatura térmica, sensores de carga elétrica (%), dados históricos de operação utilizados pela RNA, entradas monitoradas de temperatura e corrente elétrica, além de variáveis processadas pela lógica fuzzy para cálculo de risco térmico. |
+| **Atuadores (A)** | Alertas visuais simulados (“lâmpada de aviso”), exibição de relatórios preditivos no terminal, geração automática de diagnósticos técnicos via IA Gemini e recomendações operacionais para manutenção preventiva. |
+| **Sensores (S)** | Sensores de temperatura térmica (simulados), sensores de carga elétrica (simulados), dados históricos de operação utilizados pela RNA, entradas monitoradas de temperatura e corrente elétrica, além de variáveis processadas pela lógica fuzzy para cálculo de risco térmico. |
 
 ---
 ## 5. Justificativa da Abordagem
@@ -53,7 +53,7 @@ O **ThermoGrid 4.0** utiliza uma arquitetura híbrida baseada em **Redes Neurais
 
 ### Natureza do Problema
 
-O aquecimento de componentes elétricos ocorre de forma não linear, podendo causar falhas graves mesmo com pequenas variações de carga elétrica. Por isso, o sistema precisa identificar padrões de aquecimento e prever riscos antes que ocorram danos.
+Com frequência problemas em painéis elétricos não se manifestam de forma evidente, seus efeitos só aparecem quando a operação já foi prejudicada. Quando isso acontece, podem surgir elevação excessiva de temperatura, queda no rendimento do sistema, deterioração antecipada de peças, interrupções inesperadas no processo e maior exposição a riscos de segurança. Soma-se a isso o fato de que descobrir a verdadeira causa da anomalia pode ser uma tarefa complexa, sobretudo em painéis sob tensão, já que a avaliação exige mais tempo, atenção redobrada e maior vulnerabilidade para quem executa o diagnóstico. 
 
 ### Uso da Rede Neural (RNA)
 
