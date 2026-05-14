@@ -1,6 +1,6 @@
 # Projeto: Agente ThermoGrid 4.0
 
-![Google Colab](https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252)
+![Google Colab]([https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252](https://colab.research.google.com/drive/1sP1tMtZAtvEmjJgbNS4shjjQGOwb0xvz?usp=sharing))
 ![Gemini API](https://img.shields.io/badge/Gemini%20API-8E75B2?style=for-the-badge&logo=googlebard&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
