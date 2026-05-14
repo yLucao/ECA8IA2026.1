@@ -9,8 +9,8 @@
 **[Assista ao Pitch e Demonstração da Solução (2-3 min)](INSERIR_LINK_DO_VIDEO_AQUI)**
 
 ### 🚀 Link do Protótipo
-** [[PROTÓTIPO NO GOOGLE AI STUDIO]](https://ai.studio/apps/9ea37196-edb7-4e68-a7bb-1eb4e58e647f))
-** [[Link para acesso ao código no Google Colab]](https://colab.research.google.com/drive/1sP1tMtZAtvEmjJgbNS4shjjQGOwb0xvz?usp=sharing)
+* ** [[PROTÓTIPO NO GOOGLE AI STUDIO]](https://ai.studio/apps/9ea37196-edb7-4e68-a7bb-1eb4e58e647f))
+* ** [Link para acesso ao código no Google Colab](https://colab.research.google.com/drive/1sP1tMtZAtvEmjJgbNS4shjjQGOwb0xvz?usp=sharing)
 
 ### 1. Identificação do Grupo
 * **Instituição:** Faculdade Engenheiro Salvador Arena (FESA)
