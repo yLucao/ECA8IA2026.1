@@ -9,8 +9,8 @@
 **[Assista ao Pitch e Demonstração da Solução (2-3 min)](INSERIR_LINK_DO_VIDEO_AQUI)**
 
 ### 🚀 Link do Protótipo
-* ** [[PROTÓTIPO NO GOOGLE AI STUDIO]](https://ai.studio/apps/9ea37196-edb7-4e68-a7bb-1eb4e58e647f))
-* ** [Link para acesso ao código no Google Colab](https://colab.research.google.com/drive/1sP1tMtZAtvEmjJgbNS4shjjQGOwb0xvz?usp=sharing)
+*  [PROTÓTIPO NO GOOGLE AI STUDIO](https://ai.studio/apps/9ea37196-edb7-4e68-a7bb-1eb4e58e647f)
+*  [Link para acesso ao código no Google Colab](https://colab.research.google.com/drive/1sP1tMtZAtvEmjJgbNS4shjjQGOwb0xvz?usp=sharing)
 
 ### 1. Identificação do Grupo
 * **Instituição:** Faculdade Engenheiro Salvador Arena (FESA)
@@ -85,85 +85,73 @@ O sistema classifica:
 
 A partir dessas regras, o sistema calcula o nível de risco térmico do equipamento.
 ---
-### 6. Evidências Visuais e Desempenho
+## 6. Evidências Visuais e Desempenho
+
 A convergência do modelo garante que o erro na predição de temperatura seja mínimo, permitindo uma visualização "no futuro" do comportamento do componente:
+
 <img width="859" height="473" alt="image" src="https://github.com/user-attachments/assets/3ef7a8c9-d4e7-438f-a3a9-57e5eb54171d" />
 
-[INPUT]
-Componente: Microcontrolador
-Corrente medida: 450mA
-Temperatura Atual: 45°C
+> A curva de perda (MSE) parte de ~1850 e converge para próximo de zero após ~100 épocas de treinamento.
 
-[PROCESSAMENTO]
-Fuzzy disponível: True
-Método utilizado: Fuzzy Logic + RNA
+### Saída do Sistema — Exemplo Real
+<img width="1125" height="317" alt="image" src="https://github.com/user-attachments/assets/1ff8c664-7f5c-4bbd-a691-b256fe3cb2ae" />
 
-[OUTPUT NUMÉRICO]
-Índice de Risco Térmico: 0.15
-
-[INTERPRETAÇÃO - GEMINI]
-"O comportamento térmico do processador está estável. A temperatura de 45°C é considerada ideal para a carga de trabalho atual. Não foram detectados hotspots anômalos no entorno do componente."
-
-<img width="418" height="191" alt="image" src="https://github.com/user-attachments/assets/13c6208f-c3ab-419f-9fa1-da5ac0b1c8d5" />
-
+### Protótipo em Google AI Studio
+<img width="1871" height="881" alt="image" src="https://github.com/user-attachments/assets/0c988772-e852-4159-b3e9-6622884768c1" />
 
 ---
 
 ### 7. Estrutura do Repositório
-
-```text
-smartgrid-fuzzy/
+```
+text
+termogrid/
 │
 ├── README.md                  # Documentação principal do projeto
-├── requirements.txt           # Dependências do sistema
-├── .env.example               # Exemplo de configuração da API Gemini
-├── .gitignore                 # Arquivos ignorados no versionamento
+├── requirements.txt           # Dependências: skfuzzy, sklearn, matplotlib, google-generativeai
+├── .env.example               # Exemplo: GOOGLE_API_KEY=sua_chave_aqui
+├── .gitignore                 # Ignora .env, __pycache__, *.pyc
 │
 ├── assets/
-│   └── images/                # Gráficos, mapas térmicos, diagramas e logs
-│
-├── data/                      # Datasets e arquivos de entrada utilizados nos testes
+│   └── loss_curve.png         # Curva de perda gerada pelo treinamento da RNA
 │
 ├── notebooks/
-│   └── SmartGrid.ipynb        # Notebook principal executável no Google Colab
+│   └── ThermoGrid_Final.ipynb       # Notebook principal executável no Google Colab
 │
 └── src/
     ├── __init__.py
-    ├── fuzzy_logic.py         # Sistema Fuzzy para classificação térmica
-    ├── ai_interpreter.py      # Interpretação inteligente via Gemini API
-    └── model_rna.py           # Predição térmica utilizando MLPRegressor
+    ├── fuzzy_engine.py        # Universos, funções de pertinência e regras Fuzzy
+    ├── neural_model.py        # MLPRegressor: treinamento, scaler e predição de temperatura
+    ├── gemini_diagnosis.py    # Geração do prompt e chamada à API Gemini
+    └── thermogrid.py          # Orquestrador principal: executa_sistema_preditivo()
 ```
-
 ---
 
 ### 8. Instruções para Execução
 
 1. Clone o repositório do projeto:
-   ```bash
+bash
    git clone [URL_DO_REPOSITORIO]
-   ```
 
 2. Acesse a pasta do projeto:
-   ```bash
-   cd smartgrid-fuzzy
-   ```
+bash
+   cd termogrid
 
 3. Abra o notebook:
-   ```text
-   /notebooks/SmartGrid.ipynb
-   ```
+text
+   /notebooks/ThermoGrid_Final.ipynb
 
 4. Instale as dependências:
-   ```bash
-   !pip install scikit-fuzzy
-   !pip install google-genai
-   !pip install matplotlib scikit-learn
-   ```
+bash
+   !pip install scikit-fuzzy google-generativeai matplotlib scikit-learn python-dotenv
 
-5. Configure a API Gemini:
-   ```python
-   genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-   ```
+5. Configure a API Gemini no arquivo .env:
+env
+   GOOGLE_API_KEY=sua_chave_aqui
+
+   Ou diretamente no código:
+python
+   genai.configure(api_key="sua_chave_aqui")
+   model = genai.GenerativeModel('gemini-3.1-flash-lite')
 
 ---
 
