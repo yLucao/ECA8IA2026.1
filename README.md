@@ -33,11 +33,11 @@
 ---
 
 ### 3. Arquitetura Lógica e Aprendizado
-O **Agente ThermoGrid 4.0** utiliza uma arquitetura híbrida para monitoramento eletrônico:
 
-1.  **Módulo Preditivo (RNA):** Uma **Rede Neural** analisa o histórico de dissipação térmica do componente em relação à corrente consumida, prevendo quando a temperatura ultrapassará o limite de segurança operacional (Tjunction).
-2.  **Módulo de Controle:** Um sistema de **Lógica Fuzzy** classifica o estado de saúde do componente (Saudável, Alerta, Crítico) cruzando a temperatura atual com a taxa de variação térmica ($\Delta T$).
-3.  **Camada Interpretativa:** A **API do Gemini** traduz os mapas térmicos e dados de sensores em diagnósticos rápidos e dá sugestões ao operador (ex: Suspeita de mau contato em terminais ou degradação dielétrica interna, dado que a temperatura atual é elevada para uma carga de apenas 37%).
+O Agente ThermoGrid 4.0 utiliza uma arquitetura híbrida para monitoramento e diagnóstico preditivo:
+1.	Módulo Preditivo (RNA): Uma Rede Neural Artificial (MLPRegressor) analisa o histórico das variáveis de entrada para calcular a tendência térmica, estimando a temperatura futura do componente.
+2.	Módulo de Controle (Lógica Fuzzy): Sistema especialista que cruza os dados de Temperatura (Baixa, Média, Alta) e Carga (Baixa, Média, Alta) para inferir o nível de Risco (Baixo, Médio, Alto). O cálculo avalia tanto o cenário presente quanto o preditivo, acionando um alerta visual (lâmpada) caso o risco futuro ultrapasse o valor permitido.
+3.	Camada Interpretativa (IA Generativa): A API do Gemini 3.1 Flash-Lite consome os dados dos sensores e as saídas fuzzy para gerar um diagnóstico textual direto para o operador, estruturado rigidamente em: Estado da Instalação, Diagnóstico Rápido e Ação Imediata.
 
 ---
 
