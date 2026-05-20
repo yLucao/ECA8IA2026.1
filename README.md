@@ -9,7 +9,7 @@
 **[Assista ao Pitch e Demonstração da Solução](https://youtu.be/6lf67Dy74aE)**
 
 ### Link do Protótipo
-*  [PROTÓTIPO NO GOOGLE AI STUDIO](https://ai.studio/apps/9ea37196-edb7-4e68-a7bb-1eb4e58e647f)
+*  [PROTÓTIPO NO GOOGLE AI STUDIO](https://ai.studio/apps/bd2b0bae-a07b-4e41-a177-541e3f3b4c48?fullscreenApplet=true)
 *  [Link para acesso ao código no Google Colab](https://colab.research.google.com/drive/1sP1tMtZAtvEmjJgbNS4shjjQGOwb0xvz?usp=sharing)
 
 ### 1. Identificação do Grupo
