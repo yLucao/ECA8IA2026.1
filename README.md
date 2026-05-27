@@ -95,9 +95,11 @@ A convergência do modelo garante que o erro na predição de temperatura seja m
 
 ### Saída do Sistema — Exemplo Real
 <img width="1125" height="317" alt="image" src="https://github.com/user-attachments/assets/1ff8c664-7f5c-4bbd-a691-b256fe3cb2ae" />
+É demonstrada a saída do sistema em decorrência a interpretação dos dados simulados com a API do Gemini. O sistema mostra o componente que está sendo analisado, a temperatura e carga, vê histórico do componente, condição atual e com isso dispõe uma tendência térmica com demontração visual (lâmpada). Em seguida temos a interpretação do Gemini com estado atual da instalação, um possível diagnóstico para nortear o operador e sugestões de intervenções. 
 
 ### Protótipo em Google AI Studio
-<img width="1871" height="881" alt="image" src="https://github.com/user-attachments/assets/0c988772-e852-4159-b3e9-6622884768c1" />
+<img width="1424" height="713" alt="image" src="https://github.com/user-attachments/assets/112269b4-ac7c-4100-a7fc-907ce0a2e872" />
+Nosso protótipo em Google AI Studio tem como objetivo simular uma IHM real, de forma a mostrar para o operador o status de diferentes componentes do QGBT assim como sua assinatura térmica. De forma rápida e visual é possível identificar componentes superaquecidos, tendência térmica e risco atual. Para efeito de simulação nosso código gera valores aleatórios (dentro de um universo razoável), sendo também possível ao usuário setar valores manualmente para verificar o funcionamento do sistema.
 
 ---
 
