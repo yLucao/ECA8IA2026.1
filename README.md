@@ -82,13 +82,12 @@ O sistema classifica:
 - Temperatura: baixa, média ou alta;
 - Carga: baixa, média ou alta;
 - Risco: baixo, médio ou alto.
-
 A partir dessas regras, o sistema calcula o nível de risco térmico do equipamento.
----
 
 ## 6. Pipeline ETL
 <img width="8192" height="1884" alt="image" src="https://github.com/user-attachments/assets/42926f38-2380-4008-860d-67fc23f577d4" />
 
+---
 ## 7. Evidências Visuais e Desempenho
 
 A convergência do modelo garante que o erro na predição de temperatura seja mínimo, permitindo uma visualização "no futuro" do comportamento do componente:
