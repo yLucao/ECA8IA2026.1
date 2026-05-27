@@ -10,7 +10,6 @@
 
 ### Link do Protótipo
 *  [PROTÓTIPO NO GOOGLE AI STUDIO](https://ai.studio/apps/bd2b0bae-a07b-4e41-a177-541e3f3b4c48?fullscreenApplet=true)
-*  [Link para acesso ao código no Google Colab](https://colab.research.google.com/drive/1sP1tMtZAtvEmjJgbNS4shjjQGOwb0xvz?usp=sharing)
 
 ### 1. Identificação do Grupo
 * **Instituição:** Faculdade Engenheiro Salvador Arena (FESA)
