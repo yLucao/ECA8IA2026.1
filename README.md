@@ -34,6 +34,7 @@
 
 ### 3. Arquitetura Lógica e Aprendizado
 <img width="4060" height="7183" alt="Untitled diagram-2026-05-27-131842" src="https://github.com/user-attachments/assets/aa6d7978-14ba-4d91-88ba-4f5148cb2492" />
+
 O Agente ThermoGrid 4.0 utiliza uma arquitetura híbrida para monitoramento e diagnóstico preditivo:
 1.	Módulo Preditivo (RNA): Uma Rede Neural Artificial (MLPRegressor) analisa o histórico das variáveis de entrada para calcular a tendência térmica, estimando a temperatura futura do componente.
 2.	Módulo de Controle (Lógica Fuzzy): Sistema especialista que cruza os dados de Temperatura (Baixa, Média, Alta) e Carga (Baixa, Média, Alta) para inferir o nível de Risco (Baixo, Médio, Alto). O cálculo avalia tanto o cenário presente quanto o preditivo, acionando um alerta visual (lâmpada) caso o risco futuro ultrapasse o valor permitido.
