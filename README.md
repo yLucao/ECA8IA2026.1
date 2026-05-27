@@ -85,7 +85,11 @@ O sistema classifica:
 
 A partir dessas regras, o sistema calcula o nível de risco térmico do equipamento.
 ---
-## 6. Evidências Visuais e Desempenho
+
+## 6. Pipeline ETL
+<img width="8192" height="1884" alt="image" src="https://github.com/user-attachments/assets/42926f38-2380-4008-860d-67fc23f577d4" />
+
+## 7. Evidências Visuais e Desempenho
 
 A convergência do modelo garante que o erro na predição de temperatura seja mínimo, permitindo uma visualização "no futuro" do comportamento do componente:
 
@@ -103,7 +107,7 @@ Nosso protótipo em Google AI Studio tem como objetivo simular uma IHM real, de 
 
 ---
 
-### 7. Estrutura do Repositório
+### 8. Estrutura do Repositório
 ```
 text
 termogrid/
@@ -128,7 +132,7 @@ termogrid/
 ```
 ---
 
-### 8. Instruções para Execução
+### 9. Instruções para Execução
 
 1. Clone o repositório do projeto:
 bash
@@ -157,7 +161,7 @@ python
 
 ---
 
-## 9. Apêndice de IA
+## 10. Apêndice de IA
 
 Relato sobre o suporte de ferramentas de Inteligência Artificial Generativa no desenvolvimento do projeto **Agente ThermoGrid 4.0**.
 
