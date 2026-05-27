@@ -6,7 +6,7 @@
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
 ### Demonstração do Projeto
-**[Assista ao Pitch e Demonstração da Solução](https://youtu.be/6lf67Dy74aE)**
+**[Assista ao Pitch e Demonstração da Solução](https://youtu.be/MNeA7EmHgwE)**
 
 ### Link do Protótipo
 *  [PROTÓTIPO NO GOOGLE AI STUDIO](https://ai.studio/apps/bd2b0bae-a07b-4e41-a177-541e3f3b4c48?fullscreenApplet=true)
